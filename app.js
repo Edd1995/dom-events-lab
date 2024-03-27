@@ -1,6 +1,8 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const numbers = document.querySelectorAll(".button")
+let screen = document.querySelector(".display")
+
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -18,40 +20,35 @@ numbers.forEach(number => {
         // console.log(event.target.innerText);
       
         let pressed = event.target.innerText
+        screen.innerText = pressed;
 
         // Future logic to capture the button's value goes here...)
-        if (pressed === 'C') {
-            numberOne = null;
-            numberTwo = null;
-            operator = null;
-            console.log('RESET')
-        }
-        else if (pressed !== 'C') {
-      
-            if (numberOne === null && !operator) {
-                numberOne = pressed;
-            }
-          
-            if (numberOne !== null && !operator && (pressed === '/' || pressed === '*' || pressed === '-' || pressed === '+')) {
-                operator = pressed;
-            }
-            if (numberOne !== null && operator) {
-                numberTwo = pressed
-            }
-            if (numberOne !== null && numberTwo !== null && operator !== null) {
-                doMath(numberOne, numberTwo, operator);
-            }
-        }
-    })
 
-
-});
 
 /*-------------------------------- Functions --------------------------------*/
 
 const doMath = (num1, num2, operator) => { 
 
-    let total = eval(`${num1}${operator}${num2}`);
-    console.log(`${num1} ${operator} ${num2} = ${total}`)
+    // let total = eval(`${num1}${operator}${num2}`)
+    // screen.innerText = (`${num1} ${operator} ${num2} =` , total)
+
+    switch (operator) {
+        case '+':
+            screen.innerText = (num1 * num2);
+            break;
+    
+        case '-':
+            screen.innerText = (num1 - num2);
+            break;
+        case '/':
+            screen.innerText = (num1 / num2);
+            break;
+        case '+':
+            screen.innerText = (num1 + num2);
+            break;
+        default: 
+            screen.innerText = 'Awkward..'
+    }
+
 
 }
